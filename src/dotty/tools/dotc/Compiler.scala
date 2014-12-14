@@ -37,6 +37,7 @@ class Compiler {
       List(new FrontEnd),
       List(new FirstTransform,
            new SyntheticMethods),
+      List(new ReTyperCheck),
       List(new SuperAccessors),
       // pickling goes here
       List(new RefChecks,
