@@ -98,4 +98,7 @@ class ReTyper extends Typer {
     }
 
   override def checkVariance(tree: Tree)(implicit ctx: Context) = ()
+
+  override def addDummyAnnotation(tree: Tree)(implicit ctx: Context): Tree = tree
+
 }

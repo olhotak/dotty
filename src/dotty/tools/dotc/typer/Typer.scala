@@ -1159,11 +1159,18 @@ class Typer extends Namer with TypeAssigner with Applications with Implicits wit
     }
   }
 
+  def addDummyAnnotation(tree: Tree)(implicit ctx: Context): Tree = {
+    val tpe = tree.tpe
+    if(tpe.isValueType && !tpe.isInstanceOf[AnnotatedType] && !tpe.isRef(defn.DummyAnnot))
+      tree.withType(AnnotatedType(Annotation(defn.DummyAnnot, Nil), tree.tpe))
+    else tree
+  }
+
   def adapt(tree: Tree, pt: Type, original: untpd.Tree = untpd.EmptyTree)(implicit ctx: Context) = /*>|>*/ track("adapt") /*<|<*/ {
     /*>|>*/ ctx.traceIndented(i"adapting $tree of type ${tree.tpe} to $pt", typr, show = true) /*<|<*/ {
       interpolateUndetVars(tree)
       tree overwriteType tree.tpe.simplified
-      adaptInterpolated(tree, pt, original)
+      addDummyAnnotation(adaptInterpolated(tree, pt, original))
     }
   }
 

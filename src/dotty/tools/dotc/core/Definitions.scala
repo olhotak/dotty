@@ -317,6 +317,7 @@ class Definitions {
   lazy val TransientAnnot                = ctx.requiredClass("scala.transient")
   lazy val NativeAnnot                   = ctx.requiredClass("scala.native")
   lazy val ScalaStrictFPAnnot            = ctx.requiredClass("scala.annotation.strictfp")
+  lazy val DummyAnnot                    = ctx.requiredClass("dotty.dummyannotation")
 
   // Annotation classes
   lazy val AliasAnnot = ctx.requiredClass("dotty.annotation.internal.Alias")
