@@ -69,6 +69,7 @@ class tests extends CompilerTest {
   @Test def pos_packageObj = compileFile(posDir, "i0239")
 
   @Test def pos_all = compileFiles(posDir, failedOther)
+  @Test def pos_lambdalift = compileFile(posDir, "lambdalift", failedOther)
 
   @Test def new_all = compileFiles(newDir, twice)
 
